@@ -59,6 +59,23 @@ public class EmployeeWageComputation {
 		}
 		System.out.println("Employee Monthly wager = " + totalWage);
 	}
+	
+public static void getMonthlyWageWhileCondition() {
+		
+		int totalWage = 0, wage = 0, workingHr = 0;
+		while( day < 20 && workingHr <= 100  ) {
+			wage = usingSwitch();
+			if(wage / EMP_WAGE_PER_HOUR == fullDayHr) {
+				totalWage += wage;
+				workingHr += fullDayHr;
+			}
+			else if(wage / EMP_WAGE_PER_HOUR == partTimeHr) {
+				totalWage += wage;
+				workingHr += partTimeHr;
+			}
+		}
+		System.out.println("Employee Monthly wager = "+totalWage);
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation");
