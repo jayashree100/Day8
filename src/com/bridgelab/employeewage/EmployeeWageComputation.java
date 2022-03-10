@@ -3,7 +3,7 @@ package com.bridgelab.employeewage;
 import java.util.Random;
 
 public class EmployeeWageComputation {
-	static final int EMP_WAGE_PER_HOUR = 20;
+	static final Integer EMP_WAGE_PER_HOUR = 20;
 	
 
 	public static void main(String[] args) {
@@ -14,8 +14,8 @@ public class EmployeeWageComputation {
 
 		if (random == 1) {
 			System.out.println("Employee is Present");
-			int empHr = 8;
-			int empWage = EMP_WAGE_PER_HOUR * empHr;
+			Integer empHr = 8;
+			Integer empWage = EMP_WAGE_PER_HOUR * empHr;
 		}
 		    
 		else
