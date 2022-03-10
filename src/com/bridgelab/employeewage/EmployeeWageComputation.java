@@ -33,22 +33,31 @@ public class EmployeeWageComputation {
 		int PartTimeWage = EMP_WAGE_PER_HOUR * partTimeHr;
 		return PartTimeWage;
 	}
-	
+
 	public static int usingSwitch() {
-		int check = attendanceCheck() ;
+		int check = attendanceCheck();
 		day++;
 		switch (check) {
-			case IS_FULL_TIME: 
-				System.out.println("Day"+day+" = "+getDailyWage());
-				return getDailyWage();
-		case IS_PART_TIME:  
-				System.out.println("Day"+day+" = "+getPartTimeWage());
-				return getPartTimeWage();
-			default:
-				System.out.println("Day"+day+" = 0");
-			
-		return 0;
+		case IS_FULL_TIME:
+			System.out.println("Day" + day + " = " + getDailyWage());
+			return getDailyWage();
+		case IS_PART_TIME:
+			System.out.println("Day" + day + " = " + getPartTimeWage());
+			return getPartTimeWage();
+		default:
+			System.out.println("Day" + day + " = 0");
+
+			return 0;
 		}
+	}
+
+	public static void getMonthlyWage() {
+
+		int totalWage = 0;
+		for (day = 1; day <= 20; day++) {
+			totalWage += usingSwitch();
+		}
+		System.out.println("Employee Monthly wager = " + totalWage);
 	}
 
 	public static void main(String[] args) {
