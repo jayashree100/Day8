@@ -6,8 +6,7 @@ public class EmployeeWageComputation {
 	static final Integer EMP_WAGE_PER_HOUR = 20;
 	
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
+	public static int attendanceCheck() {
 		Random rand = new Random();
 		int random = rand.nextInt(2);
 		System.out.println(random);
@@ -20,6 +19,15 @@ public class EmployeeWageComputation {
 		    
 		else
 			System.out.println("Employee is Absent");
+
+		return random;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation");
+		
+		 attendanceCheck();
+		
 	}
 
 }
