@@ -8,6 +8,7 @@ public class EmployeeWageComputation {
 	static final int IS_FULL_TIME = 2;
 	static int fullDayHr = 8;
 	static int partTimeHr = 4;
+	static int day = 0;
 
 	public static int attendanceCheck() {
 		Random rand = new Random();
@@ -32,6 +33,23 @@ public class EmployeeWageComputation {
 		int PartTimeWage = EMP_WAGE_PER_HOUR * partTimeHr;
 		return PartTimeWage;
 	}
+	
+	public static int usingSwitch() {
+		int check = attendanceCheck() ;
+		day++;
+		switch (check) {
+			case IS_FULL_TIME: 
+				System.out.println("Day"+day+" = "+getDailyWage());
+				return getDailyWage();
+		case IS_PART_TIME:  
+				System.out.println("Day"+day+" = "+getPartTimeWage());
+				return getPartTimeWage();
+			default:
+				System.out.println("Day"+day+" = 0");
+			
+		return 0;
+		}
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation");
@@ -42,6 +60,8 @@ public class EmployeeWageComputation {
 		System.out.println("This is Full Time Employee Wage :" + dailyWage);
 		int partTimeWage = getPartTimeWage();
 		System.out.println("This is part time Employee wage:" + partTimeWage);
+		int switchCase = usingSwitch();
+		System.out.println(switchCase);
 
 	}
 
