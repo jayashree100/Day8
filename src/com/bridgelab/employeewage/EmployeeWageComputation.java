@@ -7,6 +7,7 @@ public class EmployeeWageComputation {
 	static final int IS_PART_TIME = 1;
 	static final int IS_FULL_TIME = 2;
 	static int fullDayHr = 8;
+	static int partTimeHr = 4;
 
 	public static int attendanceCheck() {
 		Random rand = new Random();
@@ -21,14 +22,27 @@ public class EmployeeWageComputation {
 		return random;
 	}
 	
-	public static int getDailyWager() {
+	public static int getDailyWage() {
 		
 		int Daily_wage = EMP_WAGE_PER_HOUR * fullDayHr; 
 		return Daily_wage;
 	}
+	
+	public static int getPartTimeWage() {             // adding part time wager
+    	int PartTimeWage = EMP_WAGE_PER_HOUR * partTimeHr; 
+        return PartTimeWage;
+    }
+
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation");
+		
+		int attendance = attendanceCheck();
+		System.out.println(attendance);
+		int dailyWage = getDailyWage();
+		System.out.println("This is Full Time Employee Wage :" +dailyWage);
+		int partTimeWage = getPartTimeWage();
+		System.out.println("This is part time Employee wage:" +partTimeWage);
 	}
 
 }
