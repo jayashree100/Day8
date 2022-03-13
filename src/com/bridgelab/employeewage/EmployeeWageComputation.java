@@ -1,130 +1,71 @@
 package com.bridgelab.employeewage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class EmployeeWageComputation {
-	static final int EMP_WAGE_PER_HOUR = 20;
-	static final int IS_PART_TIME = 1;
-	static final int IS_FULL_TIME = 2;
-	static int noOfWorkingDays = 20;
-	static int hourInMonth = 100;
-	static int fullDayHr = 8;
-	static int partTimeHr = 4;
-	static int day = 0;
 
-	public static int attendanceCheck() {
-		Random rand = new Random();
-		int random = rand.nextInt(2);
-		System.out.println("===============================");
-		System.out.println("Employee Attendance checking");
+	public static final int PART_TIME = 1;
+	public static final int FULL_TIME = 2;
 
-		if (random == 1)
-			System.out.println("Employee is present");
-		else
-			System.out.println("Employee is absent");
+	ArrayList<CompanyEmpWage> companies;
 
-		return random;
+	HashMap<String, Integer> totalEmpWages;
+
+	public EmployeeWageComputation() {
+		companies = new ArrayList<>();
+		totalEmpWages = new HashMap<>();
 	}
 
-	public static int getDailyWage() {
-
-		int Daily_wage = EMP_WAGE_PER_HOUR * fullDayHr;
-		return Daily_wage;
+	public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
+		CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+		companies.add(company);
+		totalEmpWages.put(companyName, 0);
 	}
 
-	public static int getPartTimeWage() { // adding part time wager
-		int PartTimeWage = EMP_WAGE_PER_HOUR * partTimeHr;
-		return PartTimeWage;
+	int generateEmployeeType() {
+		return (int) (Math.random() * 100) % 3;
 	}
 
-	public static void useSwitch() {
-		System.out.println("***********************************************************************");
-		System.out.println("Use Case 4");
-
-		int empWages = 0;
-		int empHour = 0;
-		int EmployeCheck = (int) Math.floor(Math.random() * 10) % 3;
-		switch (EmployeCheck) {
-		case IS_FULL_TIME:
-			empHour = 8;
-			break;
-		case IS_PART_TIME:
-			empHour = 4;
-			break;
+	int getWorkingHrs(int empType) {
+		switch (empType) {
+		case FULL_TIME:
+			return 8;
+		case PART_TIME:
+			return 4;
 		default:
-			empHour = 0;
+			return 0;
 		}
-		empWages = empHour * EMP_WAGE_PER_HOUR;
-		System.out.println("Employewage: " + empWages);
 	}
 
-	public static void empWageForMonth() {
-		System.out.println("***********************************************************************");
-		System.out.println("Use Case 5");
-		int empWages = 0;
-		int empHour = 0;
-		int TotalEmployeWage = 0;
-		for (int day = 0; day < noOfWorkingDays; day++) {
-			int EmployeCheck = (int) Math.floor(Math.random() * 10) % 3;
-
-			switch (EmployeCheck) {
-			case IS_FULL_TIME:
-				empHour = 8;
-				break;
-			case IS_PART_TIME:
-				empHour = 4;
-				break;
-			default:
-				empHour = 0;
-			}
-			empWages = empHour * EMP_WAGE_PER_HOUR;
-			System.out.println("Employewage: " + empWages);
+	public void calculateTotalWage() {
+		for (CompanyEmpWage company : companies) {
+			int totalWage = calculateTotalWage(company);
+			company.setTotalEmployeeWage(totalWage);
+			System.out.println(company);
 		}
-		System.out.println("TotalEmployewage: " + TotalEmployeWage);
 	}
 
-	public static void totalWorkingHourCondition() {
-		System.out.println("***********************************************************************");
-		System.out.println("Use Case 6");
-		int empWages = 0;
-		int totalEmployeHour = 0;
-		int totalEmployeWage = 0;
-		int totalWorkingDays = 0;
-		while (totalWorkingDays < noOfWorkingDays && totalEmployeHour <= hourInMonth) {
-			int empHour = 0;
-			totalWorkingDays++;
-			int EmployeCheck = (int) Math.floor(Math.random() * 10) % 3;
-			switch (EmployeCheck) {
-			case IS_FULL_TIME:
-				empHour = 8;
-				break;
-			case IS_PART_TIME:
-				empHour = 4;
-				break;
-			default:
-				empHour = 0;
-			}
-			totalEmployeHour += empHour;
-			empWages = empHour * EMP_WAGE_PER_HOUR;
-			totalEmployeWage += empWages;
-			System.out.println("Employewage: " + empWages);
+	int calculateTotalWage(CompanyEmpWage companyEmpWage) {
+		System.out.println("Computation of total wage of " + companyEmpWage.COMPANY_NAME + " employee");
+		System.out.println("-----------------------------------------------------");
+		System.out.printf("%4s\t%4s\t%2s\t%4s\n", "Day", "Workinghrs", "Wage", "Total working hrs");
+
+		int workingHrs, totalWage = 0;
+		for (int day = 1, totalWorkingHrs = 0; day <= companyEmpWage.MAX_WORKING_DAYS
+				&& totalWorkingHrs <= companyEmpWage.MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs) {
+			int empType = generateEmployeeType();
+			workingHrs = getWorkingHrs(empType);
+			int wage = workingHrs * companyEmpWage.WAGE_PER_HR;
+			totalWage += wage;
+			System.out.printf("%4d\t%5d\t%10d\t%10d\n", day, workingHrs, wage, totalWorkingHrs + workingHrs);
 		}
-		System.out.println("TotalEmployewage: " + totalEmployeWage);
+		totalEmpWages.put(companyEmpWage.COMPANY_NAME, totalWage);
+		return totalWage;
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
-
-		int attendance = attendanceCheck();
-		System.out.println(attendance);
-		int dailyWage = getDailyWage();
-		// System.out.println("This is Full Time Employee Wage :" + dailyWage);
-		int partTimeWage = getPartTimeWage();
-		// System.out.println("This is part time Employee wage:" + partTimeWage);
-		useSwitch();
-		empWageForMonth();
-		totalWorkingHourCondition();
+	public static void main(String args[]) {
 
 	}
-
 }
