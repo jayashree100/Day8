@@ -64,8 +64,17 @@ public class EmployeeWageComputation {
 		totalEmpWages.put(companyEmpWage.COMPANY_NAME, totalWage);
 		return totalWage;
 	}
+	
+	 public int getTotalEmpWage(String companyName)
+	    {
+	        return totalEmpWages.get(companyName);
+	    }
 
 	public static void main(String args[]) {
-
+		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
+        employeeWageComputation.addCompany("Microsoft", 4, 30, 100);
+        employeeWageComputation.addCompany("Google", 5, 40, 170);
+        employeeWageComputation.addCompany("Amazon", 19, 10, 150);
+        
 	}
 }
