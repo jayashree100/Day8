@@ -39,7 +39,6 @@ public class EmployeeWageComputation implements IEmployeeWageComputation{
 		}
 	}
 
-		
 	public static void main(String args[]) {
 		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
         employeeWageComputation.addCompany("Microsoft", 4, 30, 100);
