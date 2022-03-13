@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class EmployeeWageComputation {
+public class EmployeeWageComputation implements IEmployeeWageComputation{
 
 	public static final int PART_TIME = 1;
 	public static final int FULL_TIME = 2;
@@ -63,12 +63,10 @@ public class EmployeeWageComputation {
 		}
 		totalEmpWages.put(companyEmpWage.COMPANY_NAME, totalWage);
 		return totalWage;
-	}
-	
-	 public int getTotalEmpWage(String companyName)
-	    {
-	        return totalEmpWages.get(companyName);
-	    }
+	public int getTotalEmpWage(String companyName)
+    {
+        return totalEmpWages.get(companyName);
+     }
 
 	public static void main(String args[]) {
 		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
