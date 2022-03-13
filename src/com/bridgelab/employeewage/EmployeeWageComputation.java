@@ -38,14 +38,17 @@ public class EmployeeWageComputation implements IEmployeeWageComputation {
 			return 0;
 		}
 	}
+	
+    public void calculateTotalWage()
+    {
+        for (CompanyEmpWage company : companies)
+        {
+            int totalWage = calculateTotalWage(company);
+            company.setTotalEmployeeWage(totalWage);
+            System.out.println(company);
+        }
+    }
 
-	public void calculateTotalWage() {
-		for (CompanyEmpWage company : companies) {
-			int totalWage = calculateTotalWage(company);
-			company.setTotalEmployeeWage(totalWage);
-			System.out.println(company);
-		}
-	}
 
 	int calculateTotalWage(CompanyEmpWage companyEmpWage) {
 		System.out.println("Computation of total wage of " + companyEmpWage.COMPANY_NAME + " employee");
@@ -65,11 +68,10 @@ public class EmployeeWageComputation implements IEmployeeWageComputation {
 		return totalWage;
 	}
 	
-	public int getTotalEmpWage(String companyName)
-    {
-        return totalEmpWages.get(companyName);
-    }
-
+	public int getTotalEmpWage(String companyName) {
+    return totalEmpWages.get(companyName);
+  }
+    
 	public static void main(String args[]) {
 		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
 		employeeWageComputation.addCompany("Microsoft", 4, 30, 100);
