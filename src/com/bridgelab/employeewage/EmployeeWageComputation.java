@@ -63,11 +63,10 @@ public class EmployeeWageComputation implements IEmployeeWageComputation{
 		}
 		totalEmpWages.put(companyEmpWage.COMPANY_NAME, totalWage);
 		return totalWage;
-	}
 	public int getTotalEmpWage(String companyName)
     {
         return totalEmpWages.get(companyName);
-    }
+     }
 
 	public static void main(String args[]) {
 		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
@@ -75,6 +74,5 @@ public class EmployeeWageComputation implements IEmployeeWageComputation{
         employeeWageComputation.addCompany("Google", 5, 40, 170);
         employeeWageComputation.addCompany("Amazon", 19, 10, 150);
         
-
 	}
 }
