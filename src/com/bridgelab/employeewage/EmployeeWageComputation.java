@@ -21,7 +21,5 @@ public class EmployeeWageComputation {
 		System.out.println("Welcome to Employee Wage Computation");
 		
 		 attendanceCheck();
-		
 	}
-
 }
