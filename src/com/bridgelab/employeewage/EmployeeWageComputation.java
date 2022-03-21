@@ -28,6 +28,12 @@ public class EmployeeWageComputation implements IEmployeeWageComputation {
 		return (int) (Math.random() * 100) % 3;
 	}
 
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation");
+		
+		 attendanceCheck();
+	
 	int getWorkingHrs(int empType) {
 		switch (empType) {
 		case FULL_TIME:
@@ -81,7 +87,5 @@ public class EmployeeWageComputation implements IEmployeeWageComputation {
         String query = "Google";
         int totalWage = employeeWageComputation.getTotalEmpWage(query);
         System.out.println("Total Employee Wage for " + query + " company is " + totalWage);
-    
-
-	}
+    }
 }
